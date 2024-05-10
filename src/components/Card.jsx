@@ -18,7 +18,7 @@ function Card({ recipe }) {
                             <h1>Times</h1>
                             <p>5 mins</p>
                         </div>
-                        <Link to={`/details${id}`}>
+                        <Link to={`/details/${id}`}>
                             <button className="py-1 px-5 bg-white text-black mt-2 rounded-sm">View</button>
                         </Link>
                     </div>

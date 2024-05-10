@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { recipecontext } from '../context/RecipeContext';
 import Card from './Card';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Recipe() {
     const { pathname } = useLocation();
-    const [recipes] = useContext(recipecontext);
+    const [recipes,setRecipes] = useContext(recipecontext);
+    useEffect(() => {
+      setRecipes(JSON.parse(localStorage.getItem("recipes")) || []);
+  }, []);
 
     return (
         <div className="w-full h-screen bg-zinc-600 f">

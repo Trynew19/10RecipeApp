@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { recipecontext } from "../context/RecipeContext";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 function Create() {
   const [recipes, setRecipes] = useContext(recipecontext);
@@ -33,7 +34,7 @@ function Create() {
     setRecipes([...recipes, newRecipe]);
 
     localStorage.setItem("recipes", JSON.stringify([...recipes, newRecipe]));
-      
+      toast.success("recipe create sucesfully")
     navigate("/recipes")
 
   };

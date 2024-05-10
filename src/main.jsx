@@ -10,9 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <RecipeContext>
   <App />
+  <ToastContainer/>
 
   </RecipeContext>
-  <ToastContainer/>
 
   </BrowserRouter>
 
