@@ -1,12 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Card({ recipe }) {
     const { title, description, image, id } = recipe;
 
     return (
-        <div className="w-full sm:w-[calc(50% - 1rem)] md:w-[calc(33.33% - 1rem)] lg:w-[calc(25% - 1rem)] mb-5 mx-0 sm:mx-2 md:mx-4">
-            <div className="card bg-zinc-800 rounded-lg shadow-md shadow-white transform hover:scale-105 duration-200">
+        <div className="w-full sm:w-[calc(50% - 1rem)] md:w-[calc(33.33% - 1rem)] lg:w-[calc(25% - 1rem)] mb-5 mx-0 sm:mx-2 md:mx-4 flex ">
+            <div className="card w-[300px] h-[200px] bg-zinc-800 rounded-lg shadow-md shadow-white transform hover:scale-105 duration-200 ">
                 <img className="h-72 w-full object-cover rounded-t-lg" src={image} alt="image" />
 
                 <div className="text-center text-white font-medium m-3">

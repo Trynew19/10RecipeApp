@@ -1,24 +1,23 @@
 import { Link } from 'react-router-dom';
 import Card from './Card';
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 function Recipe() {
-
     const {pathname} = useLocation()
     const {recipes} = useSelector((state) => state.recipeReducer)  
-
+   
     
 
-    return (
+    return ( 
         <div className="w-full h-screen flex flex-col bg-zinc-600">
             <div className="mb-10">
                 <h1 className="text-5xl text-white text-center font-semibold mb-5">Our Recipes</h1>
                 <p className="text-2xl text-red-200 text-center">Delicious every food bite!</p>
             </div>
 
-            <div className='w-full h-screen bg-yellow-500 flex '>
-            <div className="cardcontainer  w-[300px] h-[30px]  ">
+            <div className='w-full h-screen bg-yellow-500  '>
+            <div className="cardcontainer flex gap-4  ">
                 {recipes && recipes.length > 0 ? (
                     recipes.map(recipe => (
                         <Card key={recipe.id} recipe={recipe} />

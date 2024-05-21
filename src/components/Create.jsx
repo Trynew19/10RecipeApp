@@ -1,17 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
-import { recipecontext } from "../context/RecipeContext";
+import  {  useState  } from "react";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncrecipes } from "../Redux/actions/recipeAction";
 
 function Create() {
-  const [recipes, setRecipes] = useContext(recipecontext);
     const navigate = useNavigate();
-  useEffect(() => {
-    if (!recipes) {
-      setRecipes([]);
-    }
-  }, [recipes, setRecipes]);
+    const dispatch = useDispatch()
+    const {recipes} = useSelector((state) => state.recipeReducer)
+  
 
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -31,11 +29,11 @@ function Create() {
       instructions,
     };
 
-    setRecipes([...recipes, newRecipe]);
-
+     
     localStorage.setItem("recipes", JSON.stringify([...recipes, newRecipe]));
-      toast.success("recipe create sucesfully")
-    navigate("/recipes")
+      dispatch(asyncrecipes());
+        toast.success("Recipe Created Successfully!");
+      navigate("/recipes")
 
   };
 

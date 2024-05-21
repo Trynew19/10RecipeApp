@@ -8,8 +8,7 @@ import About from "./components/About"
 import Details from "./components/Details";
 import Update from "./components/Update";
 import Create from "./components/Create";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch,} from "react-redux";
 import { asyncrecipes } from "./Redux/actions/recipeAction";
 
 const App = () => {
