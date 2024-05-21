@@ -1,7 +1,6 @@
-import { useState,useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
-import { recipecontext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncrecipes } from "../Redux/actions/recipeAction";
@@ -10,6 +9,7 @@ const Update =  () => {
     const dispatch = useDispatch()
     
     const navigate = useNavigate();
+    
     const params = useParams();
 
     const {recipes} = useSelector((state) => state.recipeReducer)
@@ -35,10 +35,12 @@ const Update =  () => {
         const recipeIndex = recipes.findIndex((r) => r.id == params.id);
         copyRecipe[recipeIndex] = updatedRecipe;
         (updatedRecipe);
-         dispatch(asyncrecipes())
         localStorage.setItem("recipes", JSON.stringify(copyRecipe));
-        toast.success("Recipe Updated Successfully!");
         navigate("/recipes");
+
+        dispatch(asyncrecipes())
+
+        toast.success("Recipe Updated Successfully!");
     };
     
     return recipe ? (

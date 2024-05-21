@@ -1,29 +1,28 @@
 import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {  useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncrecipes } from "../Redux/actions/recipeAction";
+import { useNavigate } from "react-router";
 const Details = () => {
-    const navigate = useNavigate()
-    const {recipes} = useSelector((state) => state.recipeReducer)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { recipes } = useSelector((state) => state.recipeReducer);
     const params = useParams();
     const recipe = recipes.find((r) => r.id == params.id);
 
     const deleteHandler = () => {
+        const updatedRecipes = recipes.filter((r) => r.id != params.id);
 
-        recipes.filter((r) => r.id != params.id)
+        localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
 
-        localStorage.setItem(
-            "recipes",
-            JSON.stringify(recipes.filter((r) => r.id != params.id))
-        ); 
+        // Update the state to reflect the deleted recipe
+        dispatch(asyncrecipes(updatedRecipes));
+
         navigate("/recipes");
 
-         toast.success("Recipe Deleted Successfully!");
-
+        toast.success("Recipe Deleted Successfully!");
     };
 
-    
     return recipe ? (
         <div className="w-full sm:w-[80%] m-auto p-5">
             <Link to="/recipes" className="text-3xl ri-arrow-left-line"></Link>
@@ -41,18 +40,18 @@ const Details = () => {
                         >
                             Update
                         </Link>
-                        <Link onClick={deleteHandler} className="text-red-400 border-red-400 border py-2 px-5">
+                        <button onClick={deleteHandler} className="text-red-400 border-red-400 border py-2 px-5">
                             Delete
-                        </Link>
+                        </button>
                     </div>
                 </div>
                 <div className="desc w-[50%] px-[5%] py-[3%] overflow-auto">
                     <h1 className="text-3xl border-b border-green-600 text-green-600">
                         Ingredients
                     </h1>
-                    <ul className="text-zinc-600 list-disc  p-3 ">
+                    <ul className="text-zinc-600 list-disc p-3 ">
                         {recipe.ingredients.split(",").map((d, i) => (
-                            <li className="list-item text-sm  mb-2" key={i}>
+                            <li className="list-item text-sm mb-2" key={i}>
                                 {d}
                             </li>
                         ))}
@@ -60,9 +59,9 @@ const Details = () => {
                     <h1 className="text-3xl border-b border-green-600 text-green-600">
                         Instructions
                     </h1>
-                    <ul className="text-zinc-600 list-decimal  p-3 ">
+                    <ul className="text-zinc-600 list-decimal p-3 ">
                         {recipe.instructions.split(".").map((d, i) => (
-                            <li className="list-item text-sm  mb-2" key={i}>
+                            <li className="list-item text-sm mb-2" key={i}>
                                 {d}
                             </li>
                         ))}
@@ -75,7 +74,6 @@ const Details = () => {
             Loading Recipe...
         </h1>
     );
-
 };
 
 export default Details;

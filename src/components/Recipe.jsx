@@ -4,7 +4,7 @@ import {  useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 function Recipe() {
-    const {pathname} = useLocation()
+    const {pathname} = useLocation();
     const {recipes} = useSelector((state) => state.recipeReducer)  
    
     
