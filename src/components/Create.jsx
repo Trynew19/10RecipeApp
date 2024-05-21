@@ -42,7 +42,7 @@ function Create() {
   return (
     <form
       onSubmit={submitHandler}
-      className="w-[100%] m-auto  pb-5 bg-zinc-800 px-24"
+      className="w-full sm:w-[70%] m-auto pb-5 bg-zinc-800 px-5 sm:px-24"
     >
       <h1 className="text-7xl mt-5 font-extrabold text-white  mb-[5%]">
         Create <br /> New Recipe

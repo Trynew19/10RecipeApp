@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 function Nav() {
   return (
-    <nav className="h-[10vh]  flex items-center justify-between px-16 bg-red-50 text-2xl "
+    <nav className="h-[10vh] flex items-center justify-between px-5 sm:px-16 bg-red-50 text-2xl"
         >
             <img
                 className="h-full animate-spin "

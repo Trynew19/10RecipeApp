@@ -1,25 +1,24 @@
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { recipecontext } from '../context/RecipeContext';
 import Card from './Card';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 
 function Recipe() {
-    const { pathname } = useLocation();
-    const [recipes,setRecipes] = useContext(recipecontext);
-    useEffect(() => {
-      setRecipes(JSON.parse(localStorage.getItem("recipes")) || []);
-  }, []);
+
+    const {pathname} = useLocation()
+    const {recipes} = useSelector((state) => state.recipeReducer)  
+
+    
 
     return (
-        <div className="w-full h-screen bg-zinc-600 f">
+        <div className="w-full h-screen flex flex-col bg-zinc-600">
             <div className="mb-10">
                 <h1 className="text-5xl text-white text-center font-semibold mb-5">Our Recipes</h1>
                 <p className="text-2xl text-red-200 text-center">Delicious every food bite!</p>
             </div>
 
-            <div className="cardcontainer w-[90%] flex flex-wrap gap-5 m-auto">
+            <div className='w-full h-screen bg-yellow-500 flex '>
+            <div className="cardcontainer  w-[300px] h-[30px]  ">
                 {recipes && recipes.length > 0 ? (
                     recipes.map(recipe => (
                         <Card key={recipe.id} recipe={recipe} />
@@ -37,6 +36,7 @@ function Recipe() {
                         Create Recipe
                     </Link>
                 )}
+            </div>
             </div>
         </div>
     );

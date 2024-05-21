@@ -25,7 +25,7 @@ const Details = () => {
 
     
     return recipe ? (
-        <div className="w-[80%] m-auto p-5">
+        <div className="w-full sm:w-[80%] m-auto p-5">
             <Link to="/recipes" className="text-3xl ri-arrow-left-line"></Link>
             <div className="details w-full flex h-[75vh] mt-3">
                 <div className="dets w-[50%] p-[3%] shadow">
